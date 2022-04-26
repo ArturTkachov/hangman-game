@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "GameScreen.h"
-
+#include "GameLogic.h"
+#include <msclr\marshal_cppstd.h>
+#include <iostream>
 
 #pragma once
 
@@ -18,13 +20,16 @@ namespace hangman_game {
 	/// </summary>
 	public ref class GameScreen : public System::Windows::Forms::Form
 	{
+	private: 
+		int hearts = 4;
+		int currentWordIndex = rand() % 4;
 	public:
 		GameScreen(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			std::wstring currentWord = words[this->currentWordIndex];
+			System::String^ word = msclr::interop::marshal_as<System::String^>(getWordWithRevealed(L"", currentWord));
+			this->CurrentWordLabel->Text = word;
 		}
 
 	protected:
@@ -46,6 +51,7 @@ namespace hangman_game {
 	private: System::Windows::Forms::PictureBox^ pictureBox3;
 
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
+	private: System::Windows::Forms::PictureBox^ pictureBox4;
 
 
 	protected:
@@ -78,9 +84,11 @@ namespace hangman_game {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CurrentWordLabel
@@ -124,7 +132,7 @@ namespace hangman_game {
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.InitialImage")));
-			this->pictureBox1->Location = System::Drawing::Point(225, 52);
+			this->pictureBox1->Location = System::Drawing::Point(128, 48);
 			this->pictureBox1->MaximumSize = System::Drawing::Size(150, 150);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(150, 150);
@@ -136,7 +144,7 @@ namespace hangman_game {
 			// 
 			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
 			this->pictureBox3->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.InitialImage")));
-			this->pictureBox3->Location = System::Drawing::Point(643, 52);
+			this->pictureBox3->Location = System::Drawing::Point(574, 48);
 			this->pictureBox3->Name = L"pictureBox3";
 			this->pictureBox3->Size = System::Drawing::Size(150, 150);
 			this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
@@ -147,18 +155,30 @@ namespace hangman_game {
 			// 
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
 			this->pictureBox2->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.InitialImage")));
-			this->pictureBox2->Location = System::Drawing::Point(432, 52);
+			this->pictureBox2->Location = System::Drawing::Point(352, 48);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(155, 150);
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox2->TabIndex = 6;
 			this->pictureBox2->TabStop = false;
 			// 
+			// pictureBox4
+			// 
+			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
+			this->pictureBox4->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.InitialImage")));
+			this->pictureBox4->Location = System::Drawing::Point(782, 48);
+			this->pictureBox4->Name = L"pictureBox4";
+			this->pictureBox4->Size = System::Drawing::Size(150, 150);
+			this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox4->TabIndex = 7;
+			this->pictureBox4->TabStop = false;
+			// 
 			// GameScreen
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1014, 531);
+			this->Controls->Add(this->pictureBox4);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox3);
 			this->Controls->Add(this->pictureBox1);
@@ -172,6 +192,7 @@ namespace hangman_game {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

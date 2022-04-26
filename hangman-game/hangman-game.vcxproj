@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Form1.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -130,6 +131,7 @@
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="GameScreen.h">
       <FileType>CppForm</FileType>
     </ClInclude>
