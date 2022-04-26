@@ -44,7 +44,8 @@ namespace hangman_game {
 			}
 		}
 	private: System::Windows::Forms::Label^ CurrentWordLabel;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ charBox;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
@@ -78,7 +79,7 @@ namespace hangman_game {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(GameScreen::typeid));
 			this->CurrentWordLabel = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->charBox = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
@@ -103,12 +104,12 @@ namespace hangman_game {
 			this->CurrentWordLabel->Text = L"________";
 			this->CurrentWordLabel->Click += gcnew System::EventHandler(this, &GameScreen::label1_Click);
 			// 
-			// textBox1
+			// charBox
 			// 
-			this->textBox1->Location = System::Drawing::Point(693, 248);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 22);
-			this->textBox1->TabIndex = 1;
+			this->charBox->Location = System::Drawing::Point(693, 248);
+			this->charBox->Name = L"charBox";
+			this->charBox->Size = System::Drawing::Size(100, 22);
+			this->charBox->TabIndex = 1;
 			// 
 			// label1
 			// 
@@ -127,6 +128,7 @@ namespace hangman_game {
 			this->button1->TabIndex = 3;
 			this->button1->Text = L"Проверить букву";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &GameScreen::button1_Click);
 			// 
 			// pictureBox1
 			// 
@@ -184,7 +186,7 @@ namespace hangman_game {
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->charBox);
 			this->Controls->Add(this->CurrentWordLabel);
 			this->Name = L"GameScreen";
 			this->Text = L"Игра Виселица";
@@ -202,5 +204,13 @@ namespace hangman_game {
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		std::wstring charToReveal = msclr::interop::marshal_as<std::wstring>(this->charBox->Text);
+		this->charBox->Text = "";
+		std::wstring currentWord = words[this->currentWordIndex];
+		std::wstring currentWordWithRevealed = msclr::interop::marshal_as<std::wstring>(this->CurrentWordLabel->Text);
+		System::String^ word = msclr::interop::marshal_as<System::String^>(getCombinedWords(getWordWithRevealed(charToReveal, currentWord), currentWordWithRevealed));
+		this->CurrentWordLabel->Text = word;
+	}
+};
 }
