@@ -126,6 +126,7 @@
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Form1.h">
@@ -135,6 +136,7 @@
     <ClInclude Include="GameScreen.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">

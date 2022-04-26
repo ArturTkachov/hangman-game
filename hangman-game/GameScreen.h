@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "GameScreen.h"
 #include "GameLogic.h"
-#include <msclr\marshal_cppstd.h>
+#include "Utility.h"
 #include <iostream>
 
 #pragma once
@@ -28,7 +28,7 @@ namespace hangman_game {
 		{
 			InitializeComponent();
 			std::wstring currentWord = words[this->currentWordIndex];
-			System::String^ word = msclr::interop::marshal_as<System::String^>(getWordWithRevealed(L"", currentWord));
+			System::String^ word = castAsSystemString(getWordWithRevealed(L"", currentWord));
 			this->CurrentWordLabel->Text = word;
 		}
 
@@ -205,11 +205,11 @@ namespace hangman_game {
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		std::wstring charToReveal = msclr::interop::marshal_as<std::wstring>(this->charBox->Text);
+		std::wstring charToReveal = castAsWstring(this->charBox->Text);
 		this->charBox->Text = "";
 		std::wstring currentWord = words[this->currentWordIndex];
-		std::wstring currentWordWithRevealed = msclr::interop::marshal_as<std::wstring>(this->CurrentWordLabel->Text);
-		System::String^ word = msclr::interop::marshal_as<System::String^>(getCombinedWords(getWordWithRevealed(charToReveal, currentWord), currentWordWithRevealed));
+		std::wstring currentWordWithRevealed = castAsWstring(this->CurrentWordLabel->Text);
+		System::String^ word = castAsSystemString(getCombinedWords(getWordWithRevealed(charToReveal, currentWord), currentWordWithRevealed));
 		this->CurrentWordLabel->Text = word;
 	}
 };
