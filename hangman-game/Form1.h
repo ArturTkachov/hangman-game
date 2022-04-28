@@ -1,4 +1,5 @@
-#pragma once
+﻿#pragma once
+#include "GameScreen.h";
 
 namespace hangman_game {
 
@@ -34,6 +35,9 @@ namespace hangman_game {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Label^ label1;
+	protected:
 
 	private:
 		/// <summary>
@@ -48,12 +52,47 @@ namespace hangman_game {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Form1";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->SuspendLayout();
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(379, 243);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(210, 87);
+			this->button1->TabIndex = 0;
+			this->button1->Text = L"Начать игру";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(312, 120);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(346, 46);
+			this->label1->TabIndex = 1;
+			this->label1->Text = L"Игра «Виселица»";
+			// 
+			// Form1
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(995, 531);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->button1);
+			this->Name = L"Form1";
+			this->Text = L"Form1";
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
 		}
 #pragma endregion
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		(gcnew GameScreen)->ShowDialog();
+	}
 	};
 }
