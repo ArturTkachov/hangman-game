@@ -33,3 +33,11 @@ std::wstring getCombinedWords(std::wstring word1, std:: wstring word2) {
 	} 
 	return combined;
 }
+
+bool containsLetter(std::wstring substr, std::wstring str) {
+	wchar_t letter = substr[0];
+	for (int i = 0; i < str.size(); i++) {
+		if (letter == str[i]) return true;
+	}
+	return false;
+}
