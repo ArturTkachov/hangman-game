@@ -30,8 +30,8 @@ namespace hangman_game {
 		GameScreen(void)
 		{
 			InitializeComponent();
-			std::wstring currentWord = words[this->currentWordIndex];
-			System::String^ word = castAsSystemString(getWordWithRevealed(L"", currentWord));
+			std::wstring currentWord = WORDS[this->currentWordIndex];
+			System::String^ word = castAsSystemString(getWordWithRevealed(L' ', currentWord));
 			this->CurrentWordLabel->Text = word;
 			int len = currentWord.size();
 			this->WordLengthLabel->Text = L"Длина слова: " + System::Convert::ToString(len) + ((len > 4) ? L" букв" : L" буквы");
@@ -248,9 +248,15 @@ namespace hangman_game {
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		std::wstring letterToReveal = castAsWstring(this->LetterBox->Text);
-		std::wstring currentWord = words[this->currentWordIndex];
+		System::String^ textToReveal = this->LetterBox->Text;
+		if (System::String::IsNullOrWhiteSpace(textToReveal)) return;
+
+		wchar_t letterToReveal = textToReveal[0];
+		if (!isPermittedLetter(letterToReveal)) return;
+
+		std::wstring currentWord = WORDS[this->currentWordIndex];
 		this->LetterBox->Text = "";
+
 		if (containsLetter(letterToReveal, currentWord)) {
 			std::wstring currentWordWithRevealed = castAsWstring(this->CurrentWordLabel->Text);
 			System::String^ word = castAsSystemString(getCombinedWords(getWordWithRevealed(letterToReveal, currentWord), currentWordWithRevealed));
@@ -273,7 +279,8 @@ namespace hangman_game {
 			}
 			this->hearts--;
 		};
-		std::wstring word = words[this->currentWordIndex];
+
+		std::wstring word = WORDS[this->currentWordIndex];
 		if (this->hearts == 0) (gcnew DefeatScreen(this, word))->ShowDialog();
 
 		std::wstring wordWithRevealed = castAsWstring(this->CurrentWordLabel->Text);

@@ -1,9 +1,9 @@
 ﻿#include "GameLogic.h"
 #include <string>
 
-std::wstring words[4] = { L"лес", L"хвоя", L"шашлык", L"ветер" };
+const std::wstring WORDS[4] = { L"лес", L"хвоя", L"шашлык", L"ветер" };
 
-wchar_t permittedLetters[33] = { 
+const wchar_t PERMITTED_LETTERS[33] = { 
 	L'а', L'б', L'в', L'г', L'д',
 	L'е', L'ё', L'ж', L'з', L'и',
 	L'й', L'к', L'л', L'м', L'н',
@@ -13,13 +13,18 @@ wchar_t permittedLetters[33] = {
 	L'э', L'ю', L'я' 
 };
 
-std::wstring getWordWithRevealed(std::wstring revealString, std::wstring word) {
-	std::wstring transformed = L"";
-	wchar_t reveal = revealString[0];
+bool isPermittedLetter(wchar_t letter) {
+	for (int i = 0; i < sizeof(PERMITTED_LETTERS) / sizeof(wchar_t); i++) {
+		if (PERMITTED_LETTERS[i] == letter) return true;
+	}
+	return false;
+}
 
+std::wstring getWordWithRevealed(wchar_t letter, std::wstring word) {
+	std::wstring transformed = L"";
 	for (int i = 0; i < word.size(); i++) {
-		if (reveal == word[i]) {
-			transformed += reveal;
+		if (letter == word[i]) {
+			transformed += letter;
 		}
 		else {
 			transformed += '_';
@@ -44,8 +49,7 @@ std::wstring getCombinedWords(std::wstring word1, std:: wstring word2) {
 	return combined;
 }
 
-bool containsLetter(std::wstring substr, std::wstring str) {
-	wchar_t letter = substr[0];
+bool containsLetter(wchar_t letter, std::wstring str) {
 	for (int i = 0; i < str.size(); i++) {
 		if (letter == str[i]) return true;
 	}
