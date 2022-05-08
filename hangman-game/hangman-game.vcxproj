@@ -122,6 +122,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DefeatScreen.cpp" />
     <ClCompile Include="Form1.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameScreen.cpp" />
@@ -130,6 +131,9 @@
     <ClCompile Include="VictoryScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DefeatScreen.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -143,6 +147,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DefeatScreen.resx">
+      <DependentUpon>DefeatScreen.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>
     </EmbeddedResource>
