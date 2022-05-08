@@ -123,7 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefeatScreen.cpp" />
-    <ClCompile Include="Form1.cpp" />
+    <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
@@ -134,7 +134,7 @@
     <ClInclude Include="DefeatScreen.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Form1.h">
+    <ClInclude Include="MainScreen.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="GameLogic.h" />
@@ -150,8 +150,8 @@
     <EmbeddedResource Include="DefeatScreen.resx">
       <DependentUpon>DefeatScreen.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.h</DependentUpon>
+    <EmbeddedResource Include="MainScreen.resx">
+      <DependentUpon>MainScreen.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.h</DependentUpon>

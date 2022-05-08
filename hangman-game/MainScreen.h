@@ -13,10 +13,10 @@ namespace hangman_game {
 	/// <summary>
 	/// Summary for Form1
 	/// </summary>
-	public ref class Form1 : public System::Windows::Forms::Form
+	public ref class MainScreen : public System::Windows::Forms::Form
 	{
 	public:
-		Form1(void)
+		MainScreen(void)
 		{
 			InitializeComponent();
 			//
@@ -28,7 +28,7 @@ namespace hangman_game {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Form1()
+		~MainScreen()
 		{
 			if (components)
 			{
@@ -65,7 +65,7 @@ namespace hangman_game {
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Начать игру";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			this->button1->Click += gcnew System::EventHandler(this, &MainScreen::button1_Click);
 			// 
 			// label1
 			// 
