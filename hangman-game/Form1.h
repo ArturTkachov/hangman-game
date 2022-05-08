@@ -58,9 +58,10 @@ namespace hangman_game {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(379, 243);
+			this->button1->Location = System::Drawing::Point(568, 380);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(210, 87);
+			this->button1->Size = System::Drawing::Size(315, 136);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Начать игру";
 			this->button1->UseVisualStyleBackColor = true;
@@ -71,21 +72,23 @@ namespace hangman_game {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(312, 120);
+			this->label1->Location = System::Drawing::Point(468, 188);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(346, 46);
+			this->label1->Size = System::Drawing::Size(557, 73);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Игра «Виселица»";
 			// 
 			// Form1
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(995, 531);
+			this->ClientSize = System::Drawing::Size(1492, 830);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
+			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"Form1";
-			this->Text = L"Form1";
+			this->Text = L"Игра \"Виселица\"";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
