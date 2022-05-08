@@ -122,13 +122,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DefeatScreen.cpp" />
     <ClCompile Include="Form1.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="VictoryScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DefeatScreen.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -137,13 +142,22 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Utility.h" />
+    <ClInclude Include="VictoryScreen.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DefeatScreen.resx">
+      <DependentUpon>DefeatScreen.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VictoryScreen.resx">
+      <DependentUpon>VictoryScreen.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

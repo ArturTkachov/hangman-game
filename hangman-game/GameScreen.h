@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "GameScreen.h"
+#include "VictoryScreen.h"
+#include "DefeatScreen.h"
 #include "GameLogic.h"
 #include "Utility.h"
 #include <iostream>
@@ -252,8 +254,12 @@ namespace hangman_game {
 					break;
 			}
 			this->hearts--;
-			if (this->hearts == 0) this->Close();
 		};
+		std::wstring word = words[this->currentWordIndex];
+		if (this->hearts == 0) (gcnew DefeatScreen(this, word))->ShowDialog();
+
+		std::wstring wordWithRevealed = castAsWstring(this->CurrentWordLabel->Text);
+		if (word == wordWithRevealed) (gcnew VictoryScreen(this))->ShowDialog();
 	}
 };
 }
