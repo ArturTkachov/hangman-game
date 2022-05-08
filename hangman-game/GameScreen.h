@@ -251,8 +251,9 @@ namespace hangman_game {
 		System::String^ textToReveal = this->LetterBox->Text;
 		if (System::String::IsNullOrWhiteSpace(textToReveal)) return;
 
-		wchar_t letterToReveal = textToReveal[0];
+		wchar_t letterToReveal = System::Char::ToLower(textToReveal[0]);
 		if (!isPermittedLetter(letterToReveal)) return;
+		this->UsedLettersLabel->Text += L" " + letterToReveal + L",";
 
 		std::wstring currentWord = WORDS[this->currentWordIndex];
 		this->LetterBox->Text = "";
