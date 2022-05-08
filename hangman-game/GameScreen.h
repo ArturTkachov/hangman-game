@@ -6,8 +6,6 @@
 #include "Utility.h"
 #include <iostream>
 
-#pragma once
-
 namespace hangman_game {
 
 	using namespace System;
@@ -25,6 +23,8 @@ namespace hangman_game {
 	private: 
 		int hearts = 4;
 	private: System::Windows::Forms::Label^ wordLengthLabel;
+	private: System::Windows::Forms::Label^ UsedLettersLabel;
+
 		   int currentWordIndex = rand() % 4;
 	public:
 		GameScreen(void)
@@ -34,7 +34,7 @@ namespace hangman_game {
 			System::String^ word = castAsSystemString(getWordWithRevealed(L"", currentWord));
 			this->CurrentWordLabel->Text = word;
 			int len = currentWord.size();
-			this->wordLengthLabel->Text = L"Длина слова: " + System::Convert::ToString(len) + ((len > 5) ? L" букв" : L" буквы");
+			this->wordLengthLabel->Text = L"Длина слова: " + System::Convert::ToString(len) + ((len > 4) ? L" букв" : L" буквы");
 		}
 
 	protected:
@@ -93,6 +93,7 @@ namespace hangman_game {
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
 			this->wordLengthLabel = (gcnew System::Windows::Forms::Label());
+			this->UsedLettersLabel = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -198,11 +199,22 @@ namespace hangman_game {
 			this->wordLengthLabel->Size = System::Drawing::Size(0, 25);
 			this->wordLengthLabel->TabIndex = 8;
 			// 
+			// UsedLettersLabel
+			// 
+			this->UsedLettersLabel->AutoSize = true;
+			this->UsedLettersLabel->Location = System::Drawing::Point(163, 667);
+			this->UsedLettersLabel->Name = L"UsedLettersLabel";
+			this->UsedLettersLabel->Size = System::Drawing::Size(254, 25);
+			this->UsedLettersLabel->TabIndex = 9;
+			this->UsedLettersLabel->Text = L"Использованные буквы:";
+			this->UsedLettersLabel->Click += gcnew System::EventHandler(this, &GameScreen::label2_Click);
+			// 
 			// GameScreen
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1521, 830);
+			this->Controls->Add(this->UsedLettersLabel);
 			this->Controls->Add(this->wordLengthLabel);
 			this->Controls->Add(this->pictureBox4);
 			this->Controls->Add(this->pictureBox2);
@@ -261,5 +273,7 @@ namespace hangman_game {
 		std::wstring wordWithRevealed = castAsWstring(this->CurrentWordLabel->Text);
 		if (word == wordWithRevealed) (gcnew VictoryScreen(this))->ShowDialog();
 	}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
