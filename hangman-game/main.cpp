@@ -1,4 +1,4 @@
-#include "Form1.h";
+#include "MainScreen.h";
 #include <time.h>
 #include <locale>
 
@@ -11,6 +11,6 @@ int main(array<System::String^>^ args)
     setlocale(LC_ALL, "en_US.utf8");
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
-    Application::Run(gcnew Form1());
+    Application::Run(gcnew MainScreen());
     return 0;
 }

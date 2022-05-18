@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Form1.cpp">
+    <ClCompile Include="MainScreen.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -36,9 +36,12 @@
     <ClCompile Include="DefeatScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DifficultyLevelsScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Form1.h">
+    <ClInclude Include="MainScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameScreen.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DefeatScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyLevelsScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
