@@ -20,19 +20,22 @@ namespace hangman_game {
 	/// </summary>
 	public ref class GameScreen : public System::Windows::Forms::Form
 	{
-	private: 
-		int hearts = 4;
+	private: int hearts = 4;
+	private: int currentWordIndex = rand() % 4;
 	private: System::Windows::Forms::Label^ WordLengthLabel;
+	private: System::Windows::Forms::Label^ HeartsLabel;
 	private: System::Windows::Forms::Label^ UsedLettersLabel;
-
-		   int currentWordIndex = rand() % 4;
 	public:
-		GameScreen(void)
+		GameScreen(int hearts)
 		{
 			InitializeComponent();
+			this->hearts = hearts;
+			this->HeartsLabel->Text = System::Convert::ToString(hearts);
+
 			std::wstring currentWord = WORDS[this->currentWordIndex];
 			System::String^ word = castAsSystemString(getWordWithRevealed(L' ', currentWord));
 			this->CurrentWordLabel->Text = word;
+
 			int len = currentWord.size();
 			this->WordLengthLabel->Text = L"Длина слова: " + System::Convert::ToString(len) + ((len > 4) ? L" букв" : L" буквы");
 		}
@@ -56,25 +59,6 @@ namespace hangman_game {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ CheckLetterButton;
 	private: System::Windows::Forms::PictureBox^ PictureBox1;
-	private: System::Windows::Forms::PictureBox^ PictureBox3;
-
-
-
-	private: System::Windows::Forms::PictureBox^ PictureBox2;
-	private: System::Windows::Forms::PictureBox^ PictureBox4;
-
-
-
-
-
-	protected:
-
-	protected:
-
-	protected:
-
-
-	protected:
 
 	private:
 		/// <summary>
@@ -95,15 +79,10 @@ namespace hangman_game {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->CheckLetterButton = (gcnew System::Windows::Forms::Button());
 			this->PictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->PictureBox3 = (gcnew System::Windows::Forms::PictureBox());
-			this->PictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-			this->PictureBox4 = (gcnew System::Windows::Forms::PictureBox());
 			this->WordLengthLabel = (gcnew System::Windows::Forms::Label());
 			this->UsedLettersLabel = (gcnew System::Windows::Forms::Label());
+			this->HeartsLabel = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureBox1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureBox3))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureBox2))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureBox4))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CurrentWordLabel
@@ -111,13 +90,12 @@ namespace hangman_game {
 			this->CurrentWordLabel->AutoSize = true;
 			this->CurrentWordLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 28.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->CurrentWordLabel->Location = System::Drawing::Point(148, 336);
+			this->CurrentWordLabel->Location = System::Drawing::Point(153, 338);
 			this->CurrentWordLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->CurrentWordLabel->Name = L"CurrentWordLabel";
 			this->CurrentWordLabel->Size = System::Drawing::Size(373, 86);
 			this->CurrentWordLabel->TabIndex = 0;
 			this->CurrentWordLabel->Text = L"________";
-			this->CurrentWordLabel->Click += gcnew System::EventHandler(this, &GameScreen::label1_Click);
 			// 
 			// LetterBox
 			// 
@@ -146,56 +124,20 @@ namespace hangman_game {
 			this->CheckLetterButton->TabIndex = 3;
 			this->CheckLetterButton->Text = L"Проверить букву";
 			this->CheckLetterButton->UseVisualStyleBackColor = true;
-			this->CheckLetterButton->Click += gcnew System::EventHandler(this, &GameScreen::button1_Click);
+			this->CheckLetterButton->Click += gcnew System::EventHandler(this, &GameScreen::CheckLetterButton_Click);
 			// 
 			// PictureBox1
 			// 
 			this->PictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureBox1.Image")));
 			this->PictureBox1->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureBox1.InitialImage")));
-			this->PictureBox1->Location = System::Drawing::Point(192, 75);
+			this->PictureBox1->Location = System::Drawing::Point(1198, 47);
 			this->PictureBox1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->PictureBox1->MaximumSize = System::Drawing::Size(225, 234);
 			this->PictureBox1->Name = L"PictureBox1";
-			this->PictureBox1->Size = System::Drawing::Size(225, 234);
+			this->PictureBox1->Size = System::Drawing::Size(225, 225);
 			this->PictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->PictureBox1->TabIndex = 4;
 			this->PictureBox1->TabStop = false;
-			// 
-			// PictureBox3
-			// 
-			this->PictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureBox3.Image")));
-			this->PictureBox3->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureBox3.InitialImage")));
-			this->PictureBox3->Location = System::Drawing::Point(861, 75);
-			this->PictureBox3->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->PictureBox3->Name = L"PictureBox3";
-			this->PictureBox3->Size = System::Drawing::Size(225, 234);
-			this->PictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->PictureBox3->TabIndex = 5;
-			this->PictureBox3->TabStop = false;
-			// 
-			// PictureBox2
-			// 
-			this->PictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureBox2.Image")));
-			this->PictureBox2->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureBox2.InitialImage")));
-			this->PictureBox2->Location = System::Drawing::Point(528, 75);
-			this->PictureBox2->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->PictureBox2->Name = L"PictureBox2";
-			this->PictureBox2->Size = System::Drawing::Size(232, 234);
-			this->PictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->PictureBox2->TabIndex = 6;
-			this->PictureBox2->TabStop = false;
-			// 
-			// PictureBox4
-			// 
-			this->PictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureBox4.Image")));
-			this->PictureBox4->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureBox4.InitialImage")));
-			this->PictureBox4->Location = System::Drawing::Point(1173, 75);
-			this->PictureBox4->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->PictureBox4->Name = L"PictureBox4";
-			this->PictureBox4->Size = System::Drawing::Size(225, 234);
-			this->PictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->PictureBox4->TabIndex = 7;
-			this->PictureBox4->TabStop = false;
 			// 
 			// WordLengthLabel
 			// 
@@ -213,18 +155,26 @@ namespace hangman_game {
 			this->UsedLettersLabel->Size = System::Drawing::Size(254, 25);
 			this->UsedLettersLabel->TabIndex = 9;
 			this->UsedLettersLabel->Text = L"Использованные буквы:";
-			this->UsedLettersLabel->Click += gcnew System::EventHandler(this, &GameScreen::label2_Click);
+			// 
+			// HeartsLabel
+			// 
+			this->HeartsLabel->AutoSize = true;
+			this->HeartsLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 72, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->HeartsLabel->Location = System::Drawing::Point(1003, 47);
+			this->HeartsLabel->Name = L"HeartsLabel";
+			this->HeartsLabel->Size = System::Drawing::Size(199, 217);
+			this->HeartsLabel->TabIndex = 10;
+			this->HeartsLabel->Text = L"9";
 			// 
 			// GameScreen
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1521, 830);
+			this->Controls->Add(this->HeartsLabel);
 			this->Controls->Add(this->UsedLettersLabel);
 			this->Controls->Add(this->WordLengthLabel);
-			this->Controls->Add(this->PictureBox4);
-			this->Controls->Add(this->PictureBox2);
-			this->Controls->Add(this->PictureBox3);
 			this->Controls->Add(this->PictureBox1);
 			this->Controls->Add(this->CheckLetterButton);
 			this->Controls->Add(this->label1);
@@ -233,21 +183,14 @@ namespace hangman_game {
 			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"GameScreen";
 			this->Text = L"Игра Виселица";
-			this->Load += gcnew System::EventHandler(this, &GameScreen::GameScreen_Load);
+			this->TopMost = true;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureBox1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureBox3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureBox2))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureBox4))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void GameScreen_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void CheckLetterButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		System::String^ textToReveal = this->LetterBox->Text;
 		if (System::String::IsNullOrWhiteSpace(textToReveal)) return;
 
@@ -264,21 +207,8 @@ namespace hangman_game {
 			this->CurrentWordLabel->Text = word;
 		}
 		else {
-			switch (this->hearts) {
-				case 4:
-					this->PictureBox4->Visible = false;
-					break;
-				case 3:
-					this->PictureBox3->Visible = false;
-					break;
-				case 2:
-					this->PictureBox2->Visible = false;
-					break;
-				case 1:
-					this->PictureBox1->Visible = false;
-					break;
-			}
 			this->hearts--;
+			this->HeartsLabel->Text = System::Convert::ToString(this->hearts);
 		};
 
 		std::wstring word = WORDS[this->currentWordIndex];
@@ -287,7 +217,5 @@ namespace hangman_game {
 		std::wstring wordWithRevealed = castAsWstring(this->CurrentWordLabel->Text);
 		if (word == wordWithRevealed) (gcnew VictoryScreen(this))->ShowDialog();
 	}
-private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
 };
 }

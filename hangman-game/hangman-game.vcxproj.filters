@@ -36,6 +36,9 @@
     <ClCompile Include="DefeatScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DifficultyLevelsScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainScreen.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DefeatScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyLevelsScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

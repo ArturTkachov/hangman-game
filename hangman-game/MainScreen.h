@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "GameScreen.h";
+#include "DifficultyLevelsScreen.h";
 
 namespace hangman_game {
 
@@ -95,7 +95,7 @@ namespace hangman_game {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		(gcnew GameScreen)->ShowDialog();
+		(gcnew DifficultyLevelsScreen)->ShowDialog();
 	}
 	};
 }
