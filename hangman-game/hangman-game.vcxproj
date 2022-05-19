@@ -130,6 +130,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="VictoryScreen.cpp" />
+    <ClCompile Include="WordCategoryScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DefeatScreen.h">
@@ -149,6 +150,9 @@
     <ClInclude Include="VictoryScreen.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="WordCategoryScreen.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DefeatScreen.resx">
@@ -165,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VictoryScreen.resx">
       <DependentUpon>VictoryScreen.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WordCategoryScreen.resx">
+      <DependentUpon>WordCategoryScreen.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

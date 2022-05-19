@@ -88,6 +88,7 @@ namespace hangman_game {
 			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"VictoryScreen";
 			this->Text = L"Form1";
+			this->TopMost = true;
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "GameScreen.h"
+#include "WordCategoryScreen.h"
 
 namespace hangman_game {
 
@@ -126,15 +126,15 @@ namespace hangman_game {
 #pragma endregion
 	private: System::Void FourHeartsButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
-		(gcnew GameScreen(4))->Show();
+		(gcnew WordCategoryScreen(4))->Show();
 	}
 	private: System::Void SixHeartsButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
-		(gcnew GameScreen(6))->Show();
+		(gcnew WordCategoryScreen(6))->Show();
 	}
 	private: System::Void EightHeartsButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
-		(gcnew GameScreen(8))->Show();
+		(gcnew WordCategoryScreen(8))->Show();
 	}
 };
 }
