@@ -21,18 +21,20 @@ namespace hangman_game {
 	public ref class GameScreen : public System::Windows::Forms::Form
 	{
 	private: int hearts = 4;
+	private: int categoryIndex;
 	private: int currentWordIndex = rand() % 4;
 	private: System::Windows::Forms::Label^ WordLengthLabel;
 	private: System::Windows::Forms::Label^ HeartsLabel;
 	private: System::Windows::Forms::Label^ UsedLettersLabel;
 	public:
-		GameScreen(int hearts)
+		GameScreen(int hearts, int categoryIndex)
 		{
 			InitializeComponent();
 			this->hearts = hearts;
 			this->HeartsLabel->Text = System::Convert::ToString(hearts);
-
-			std::wstring currentWord = WORDS[this->currentWordIndex];
+			
+			this->categoryIndex = categoryIndex;
+			std::wstring currentWord = WORDS[categoryIndex][this->currentWordIndex];
 			System::String^ word = castAsSystemString(getWordWithRevealed(L' ', currentWord));
 			this->CurrentWordLabel->Text = word;
 
@@ -198,7 +200,7 @@ namespace hangman_game {
 		if (!isPermittedLetter(letterToReveal)) return;
 		this->UsedLettersLabel->Text += L" " + letterToReveal + L",";
 
-		std::wstring currentWord = WORDS[this->currentWordIndex];
+		std::wstring currentWord = WORDS[this->categoryIndex][this->currentWordIndex];
 		this->LetterBox->Text = "";
 
 		if (containsLetter(letterToReveal, currentWord)) {
@@ -211,11 +213,10 @@ namespace hangman_game {
 			this->HeartsLabel->Text = System::Convert::ToString(this->hearts);
 		};
 
-		std::wstring word = WORDS[this->currentWordIndex];
-		if (this->hearts == 0) (gcnew DefeatScreen(this, word))->ShowDialog();
+		if (this->hearts == 0) (gcnew DefeatScreen(this, currentWord))->ShowDialog();
 
 		std::wstring wordWithRevealed = castAsWstring(this->CurrentWordLabel->Text);
-		if (word == wordWithRevealed) (gcnew VictoryScreen(this))->ShowDialog();
+		if (currentWord == wordWithRevealed) (gcnew VictoryScreen(this))->ShowDialog();
 	}
 };
 }

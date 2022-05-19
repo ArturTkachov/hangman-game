@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <string>
 
-extern const std::wstring WORDS[4];
+extern const std::wstring WORDS[3][4];
 
 extern const wchar_t PERMITTED_LETTERS[33];
 

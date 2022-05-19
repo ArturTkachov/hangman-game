@@ -89,9 +89,8 @@ namespace hangman_game {
 			this->WordRevealLabel->AutoSize = true;
 			this->WordRevealLabel->Location = System::Drawing::Point(517, 344);
 			this->WordRevealLabel->Name = L"WordRevealLabel";
-			this->WordRevealLabel->Size = System::Drawing::Size(199, 25);
+			this->WordRevealLabel->Size = System::Drawing::Size(0, 25);
 			this->WordRevealLabel->TabIndex = 2;
-			this->WordRevealLabel->Text = L"";
 			this->WordRevealLabel->Click += gcnew System::EventHandler(this, &DefeatScreen::label2_Click);
 			// 
 			// DefeatScreen
@@ -105,6 +104,7 @@ namespace hangman_game {
 			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"DefeatScreen";
 			this->Text = L"Form1";
+			this->TopMost = true;
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

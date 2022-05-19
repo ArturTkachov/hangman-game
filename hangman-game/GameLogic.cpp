@@ -1,7 +1,11 @@
 ﻿#include "GameLogic.h"
 #include <string>
 
-const std::wstring WORDS[4] = { L"лес", L"хвоя", L"шашлык", L"ветер" };
+const std::wstring WORDS[3][4] = {
+	{ L"лес", L"хвоя", L"шашлык", L"ветер" },
+	{ L"репозиторий", L"метод", L"декоратор", L"класс" },
+	{ L"роза", L"архидея", L"ромашка", L"фиалка" }
+};
 
 const wchar_t PERMITTED_LETTERS[33] = { 
 	L'а', L'б', L'в', L'г', L'д',
