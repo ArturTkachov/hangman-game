@@ -129,6 +129,7 @@
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="ValidLettersDialog.cpp" />
     <ClCompile Include="VictoryScreen.cpp" />
     <ClCompile Include="WordCategoryScreen.cpp" />
   </ItemGroup>
@@ -147,6 +148,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Utility.h" />
+    <ClInclude Include="ValidLettersDialog.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="VictoryScreen.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidLettersDialog.resx">
+      <DependentUpon>ValidLettersDialog.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VictoryScreen.resx">
       <DependentUpon>VictoryScreen.h</DependentUpon>

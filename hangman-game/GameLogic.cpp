@@ -24,6 +24,13 @@ bool isPermittedLetter(wchar_t letter) {
 	return false;
 }
 
+bool isUsedLetter(wchar_t letter, wchar_t usedLetters[], int length) {
+	for (int i = 0; i < length; i++) {
+		if (usedLetters[i] == letter) return true;
+	}
+	return false;
+}
+
 std::wstring getWordWithRevealed(wchar_t letter, std::wstring word) {
 	std::wstring transformed = L"";
 	for (int i = 0; i < word.size(); i++) {
