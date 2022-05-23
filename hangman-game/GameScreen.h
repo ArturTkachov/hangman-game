@@ -2,6 +2,7 @@
 #include "GameScreen.h"
 #include "VictoryScreen.h"
 #include "DefeatScreen.h"
+#include "ValidLettersDialog.h"
 #include "GameLogic.h"
 #include "Utility.h"
 #include <iostream>
@@ -23,6 +24,8 @@ namespace hangman_game {
 	private: int hearts = 4;
 	private: int categoryIndex;
 	private: int currentWordIndex = rand() % 4;
+	private: int usedLetterIndex = 0;
+	private: wchar_t* usedLetters;
 	private: System::Windows::Forms::Label^ WordLengthLabel;
 	private: System::Windows::Forms::Label^ HeartsLabel;
 	private: System::Windows::Forms::Label^ UsedLettersLabel;
@@ -40,6 +43,8 @@ namespace hangman_game {
 
 			int len = currentWord.size();
 			this->WordLengthLabel->Text = L"Длина слова: " + System::Convert::ToString(len) + ((len > 4) ? L" букв" : L" буквы");
+
+			this->usedLetters = new wchar_t[50];
 		}
 
 	protected:
@@ -52,6 +57,7 @@ namespace hangman_game {
 			{
 				delete components;
 			}
+			delete[] this->usedLetters;
 		}
 	private: System::Windows::Forms::Label^ CurrentWordLabel;
 	private: System::Windows::Forms::TextBox^ LetterBox;
@@ -197,8 +203,13 @@ namespace hangman_game {
 		if (System::String::IsNullOrWhiteSpace(textToReveal)) return;
 
 		wchar_t letterToReveal = System::Char::ToLower(textToReveal[0]);
-		if (!isPermittedLetter(letterToReveal)) return;
+		if (!isPermittedLetter(letterToReveal) || isUsedLetter(letterToReveal, this->usedLetters, this->usedLetterIndex + 1)) {
+			(gcnew ValidLettersDialog)->ShowDialog();
+			return;
+		};
 		this->UsedLettersLabel->Text += L" " + letterToReveal + L",";
+		this->usedLetters[this->usedLetterIndex] = letterToReveal;
+		this->usedLetterIndex++;
 
 		std::wstring currentWord = WORDS[this->categoryIndex][this->currentWordIndex];
 		this->LetterBox->Text = "";
