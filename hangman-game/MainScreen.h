@@ -79,7 +79,7 @@ namespace hangman_game {
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Игра «Виселица»";
 			// 
-			// Form1
+			// MainScreen
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -87,7 +87,8 @@ namespace hangman_game {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->Name = L"Form1";
+			this->Name = L"MainScreen";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Игра \"Виселица\"";
 			this->ResumeLayout(false);
 			this->PerformLayout();

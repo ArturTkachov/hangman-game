@@ -118,7 +118,8 @@ namespace hangman_game {
 			this->Controls->Add(this->SixHeartsButton);
 			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"DifficultyLevelsScreen";
-			this->Text = L"Form1";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Ёкран выбора сердечек";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
