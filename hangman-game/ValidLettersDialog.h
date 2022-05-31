@@ -68,15 +68,16 @@ namespace hangman_game {
 			this->textBox1->Text = L"Введенная буква не может использоваться повторно и должна принадлежать русскому а"
 				L"лфавиту";
 			// 
-			// VictoryScreen
+			// ValidLettersDialog
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1492, 830);
 			this->Controls->Add(this->textBox1);
 			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->Name = L"VictoryScreen";
-			this->Text = L"Form1";
+			this->Name = L"ValidLettersDialog";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Была введена недопустимая буква";
 			this->TopMost = true;
 			this->ResumeLayout(false);
 			this->PerformLayout();

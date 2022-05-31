@@ -84,12 +84,12 @@ namespace hangman_game {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(239, 145);
+			this->label1->Location = System::Drawing::Point(347, 152);
 			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(986, 73);
+			this->label1->Size = System::Drawing::Size(818, 73);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"¬ыберите количество сердечек";
+			this->label1->Text = L"¬ыберите категорию слов";
 			// 
 			// ThirdCategoryButton
 			// 
@@ -124,7 +124,8 @@ namespace hangman_game {
 			this->Controls->Add(this->SecondCategoryButton);
 			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"WordCategoryScreen";
-			this->Text = L"Form1";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Ёкран выбора категории слов";
 			this->TopMost = true;
 			this->ResumeLayout(false);
 			this->PerformLayout();
